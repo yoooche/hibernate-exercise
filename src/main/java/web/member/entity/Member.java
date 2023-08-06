@@ -1,4 +1,4 @@
-package web.member.pojo;
+package web.member.entity;
 
 import java.sql.Timestamp;
 
@@ -7,7 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import org.hibernate.annotations.Entity;
-import core.pojo.Core;
+
+import core.entity.Core;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -42,6 +43,4 @@ public class Member extends Core {
 		this.username = username;
 		this.nickname = nickname;
 	}
-
-	
 }

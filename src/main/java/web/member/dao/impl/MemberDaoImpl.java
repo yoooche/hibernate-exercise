@@ -10,7 +10,7 @@ import org.hibernate.Session;
 import org.hibernate.query.Query;
 
 import web.member.dao.MemberDao;
-import web.member.pojo.Member;
+import web.member.entity.Member;
 
 public class MemberDaoImpl implements MemberDao {
 
@@ -37,7 +37,7 @@ public class MemberDaoImpl implements MemberDao {
 			hql.append("password = :password,");
 		}
 		hql.append("nickname = :nickname,")
-			.append("pass = :pass")
+			.append("pass = :pass,")
 			.append("roleId = :roleId,")
 			.append("updater = :updater,")
 			.append("lastUpdatedDate = NOW() ")
@@ -51,7 +51,7 @@ public class MemberDaoImpl implements MemberDao {
 		return query
 			.setParameter("nickname", member.getNickname())
 			.setParameter("pass", member.getPass())
-			.setParameter("roleId", member.getId())
+			.setParameter("roleId", member.getRoleId())
 			.setParameter("updater", member.getUpdater())
 			.setParameter("username", member.getUsername())
 			.executeUpdate();
@@ -89,7 +89,7 @@ public class MemberDaoImpl implements MemberDao {
 		final String sql = "select * from MEMBER where USERNAME = :username and PASSWORD = :password";
 		
 		return getSession()
-				.createNamedQuery(sql, Member.class)
+				.createNativeQuery(sql, Member.class)
 				.setParameter("username", username)
 				.setParameter("password", password)
 				.uniqueResult();
